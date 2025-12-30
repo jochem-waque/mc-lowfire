@@ -10,6 +10,7 @@ import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -28,6 +29,8 @@ public class LowFire implements ClientModInitializer {
 
 	private static final DecimalFormat df = new DecimalFormat("0.0");
 
+
+	private static final KeyBinding.Category category = KeyBinding.Category.create(Identifier.of(LowFire.MOD_ID, "key.categories.lowfire"));
 	private KeyBinding toggleKey;
 	private KeyBinding toggleRenderKey;
 	private KeyBinding nextFireOffsetKey;
@@ -43,21 +46,21 @@ public class LowFire implements ClientModInitializer {
 				"key.lowfire.toggle",
 				InputUtil.Type.KEYSYM,
 				-1,
-				"key.categories.lowfire"
+				category
 		));
 
 		toggleRenderKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
 				"key.lowfire.toggleRender",
 				InputUtil.Type.KEYSYM,
 				-1,
-				"key.categories.lowfire"
+				category
 		));
 
 		nextFireOffsetKey = KeyBindingHelper.registerKeyBinding(new KeyBinding(
 				"key.lowfire.nextFireOffset",
 				InputUtil.Type.KEYSYM,
 				-1,
-				"key.categories.lowfire"
+				category
 		));
 
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
